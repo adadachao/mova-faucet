@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mova Faucet - Testnet Token Distribution",
-  description: "Mova testnet token distribution platform for developers",
+  title: "Mova Faucet - Beta Token Distribution",
+  description: "Mova beta token distribution platform for developers",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover",
   themeColor: "#C1FF72",
   icons: {

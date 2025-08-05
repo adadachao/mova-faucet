@@ -11,26 +11,6 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // 移动端菜单状态
   const [isLoading, setIsLoading] = useState(false); // 加载状态
 
-  // 使用Web3.js验证地址
-  const isValidWeb3Address = (address: string): boolean => {
-    try {
-      // 首先检查基本格式
-      if (!Web3.utils.isAddress(address)) {
-        return false;
-      }
-      
-      // 尝试转换为校验和地址，如果失败则说明地址无效
-      try {
-        Web3.utils.toChecksumAddress(address);
-        return true;
-      } catch (checksumError) {
-        return false;
-      }
-    } catch (error) {
-      return false;
-    }
-  };
-
   const handleGetTokens = async () => {
     const trimmedAddress = walletAddress.trim();
     
@@ -55,12 +35,12 @@ export default function Home() {
       normalizedAddress = Web3.utils.toChecksumAddress(lowerAddress);
       
     } catch (error) {
-      toast.error('Please enter a valid Web3 wallet address');
+      toast.error(error instanceof Error ? error.message : 'Please enter a valid Web3 wallet address');
       return;
     }
 
     setIsLoading(true);
-    const loadingToast = toast.loading('Sending testnet tokens...');
+    const loadingToast = toast.loading('Sending beta tokens...');
 
     try {
       const response = await fetch('/api/faucet/v1/transfer', {
@@ -78,7 +58,7 @@ export default function Home() {
         if (data.error && data.error !== "200") {
           toast.error(`Transfer failed: ${data.err_msg || data.data || 'Server error'}`, { id: loadingToast });
         } else {
-          toast.success('Testnet tokens sent successfully!', { id: loadingToast });
+          toast.success('Beta tokens sent successfully!', { id: loadingToast });
         }
       } else {
         const errorData = await response.json().catch(() => ({}));
@@ -93,13 +73,6 @@ export default function Home() {
     }
   };
 
-  const handleConnectSocial = (platform: 'x' | 'discord') => {
-    console.log(`Connecting to ${platform}`);
-  };
-
-  const handleAddTestnet = () => {
-    console.log('Adding testnet to wallet');
-  };
 
   const handleNavClick = (navItem: string) => {
     setActiveNav(navItem);
@@ -256,11 +229,11 @@ export default function Home() {
                 isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#B8F066]'
               }`}
             >
-              {isLoading ? 'Sending...' : 'Get Testnet MOVA'}
+              {isLoading ? 'Sending...' : 'Get Beta MOVA'}
             </button>
 
             <p className="text-[#D9D9D9] text-xs md:text-xs text-center mb-6 md:mb-8">
-              Testnet tokens are for development purposes only, they do not have real value.
+              Beta tokens are for development purposes only, they do not have real value.
             </p>
 
             {/* <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-center text-white">Connect your social media accounts to get more tokens</h3>
@@ -281,7 +254,7 @@ export default function Home() {
             </div>
 
             <p className="text-gray-400 text-xs md:text-sm text-center">
-              New here? <a href="#" onClick={handleAddTestnet}>Add Testnet to your wallet.</a>
+              New here? <a href="#" onClick={handleAddBeta}>Add Beta to your wallet.</a>
             </p> */}
           </div>
 
@@ -295,7 +268,7 @@ export default function Home() {
                   What is the Mova Faucet?
                 </h3>
                 <p className="text-[#fff] leading-relaxed text-sm md:text-base ">
-                  Testnet users are encouraged to use the Mova Faucet to obtain Testnet tokens for use on the Mova Testnet network. The faucet is designed to distribute tokens to new or depleted users.
+                  Beta users are encouraged to use the Mova Faucet to obtain Beta tokens for use on the Mova Beta network. The faucet is designed to distribute tokens to new or depleted users.
                 </p>
               </div>
 
@@ -304,7 +277,7 @@ export default function Home() {
                   How do I get more tokens?
                 </h3>
                 <p className="text-[#fff] leading-relaxed font- text-sm md:text-base ">
-                  According to the eligibility requirements, users can claim tokens from the Mova Faucet once every 6 hours. In the future, as the testnet features are improved, active members of the Mova community will be eligible for larger token allocations by connecting their Discord and Twitter accounts.
+                  According to the eligibility requirements, users can claim tokens from the Mova Faucet once every 6 hours. In the future, as the beta features are improved, active members of the Mova community will be eligible for larger token allocations by connecting their Discord and Twitter accounts.
                 </p>
               </div>
             </div>

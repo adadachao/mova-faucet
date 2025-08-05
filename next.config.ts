@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   //   return [
   //     {
   //       source: '/api/faucet/:path*',
-  //       destination: 'http://15.206.227.101:38070/api/faucet/:path*',
+  //       destination: 'https://faucet.mars.movachain.com/api/faucet/:path*',
   //     },
   //   ];
   // },
