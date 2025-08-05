@@ -55,9 +55,7 @@ export default function Home() {
         
         // 检查API返回的具体错误
         if (data.error && data.error !== "200") {
-          toast.error(`Transfer failed: ${data.err_msg || 'Server error'}`, { id: loadingToast });
-        } else if (data.data === "false") {
-          toast.error(`Transfer failed: ${data.err_msg || 'Request denied'}`, { id: loadingToast });
+          toast.error(`Transfer failed: ${data.err_msg || data.data || 'Server error'}`, { id: loadingToast });
         } else {
           toast.success('Testnet tokens sent successfully!', { id: loadingToast });
         }
