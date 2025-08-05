@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'API route is working',
+    timestamp: new Date().toISOString()
+  });
+}
+
 export async function POST(request: NextRequest) {
+  console.log('API route called');
+  
   try {
     const body = await request.json();
     
@@ -9,6 +18,10 @@ export async function POST(request: NextRequest) {
     
     console.log('Proxying request to:', FAUCET_API_URL);
     console.log('Request body:', body);
+    console.log('Environment variables:', {
+      FAUCET_API_URL: process.env.FAUCET_API_URL,
+      NODE_ENV: process.env.NODE_ENV
+    });
 
     const response = await fetch(FAUCET_API_URL, {
       method: 'POST',
