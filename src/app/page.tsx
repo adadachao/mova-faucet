@@ -287,24 +287,24 @@ export default function Home() {
 
           {/* FAQ 部分 */}
           <div className="max-w-5xl mx-auto">
-            <h2 className="underline text-xl md:text-2xl font-bold text-center mb-6 md:mb-8 text-white">Frequently Asked Questions</h2>
+            <h2 className=" text-xl md:text-2xl font-bold text-center mb-6 md:mb-8 text-white">Frequently Asked Questions</h2>
             
             <div className="space-y-4 md:space-y-6">
               <div>
-                <h3 className="text-base md:text-lg font-semibold text-[#C1FF72] mb-2 underline">
+                <h3 className="text-base md:text-lg font-semibold text-[#C1FF72] mb-2 ">
                   What is the Mova Faucet?
                 </h3>
-                <p className="text-[#fff] leading-relaxed text-sm md:text-base underline">
+                <p className="text-[#fff] leading-relaxed text-sm md:text-base ">
                   Testnet users are encouraged to use the Mova Faucet to obtain Testnet tokens for use on the Mova Testnet network. The faucet is designed to distribute tokens to new or depleted users.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-base md:text-lg font-semibold text-[#C1FF72] mb-2 underline">
+                <h3 className="text-base md:text-lg font-semibold text-[#C1FF72] mb-2 ">
                   How do I get more tokens?
                 </h3>
-                <p className="text-[#fff] leading-relaxed font- text-sm md:text-base underline">
-                  Subject to eligibility requirements, users can claim tokens from the Mova Faucet every 6 hours. Active members of the Mova community may be eligible for larger token allocations by connecting Discord and Twitter accounts.
+                <p className="text-[#fff] leading-relaxed font- text-sm md:text-base ">
+                  According to the eligibility requirements, users can claim tokens from the Mova Faucet once every 6 hours. In the future, as the testnet features are improved, active members of the Mova community will be eligible for larger token allocations by connecting their Discord and Twitter accounts.
                 </p>
               </div>
             </div>
