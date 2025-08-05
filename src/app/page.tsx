@@ -14,7 +14,18 @@ export default function Home() {
   // 使用Web3.js验证地址
   const isValidWeb3Address = (address: string): boolean => {
     try {
-      return Web3.utils.isAddress(address);
+      // 首先检查基本格式
+      if (!Web3.utils.isAddress(address)) {
+        return false;
+      }
+      
+      // 尝试转换为校验和地址，如果失败则说明地址无效
+      try {
+        Web3.utils.toChecksumAddress(address);
+        return true;
+      } catch (checksumError) {
+        return false;
+      }
     } catch (error) {
       return false;
     }
@@ -28,7 +39,22 @@ export default function Home() {
       return;
     }
 
-    if (!isValidWeb3Address(trimmedAddress)) {
+    // 尝试标准化地址
+    let normalizedAddress = trimmedAddress;
+    
+    // 正确的地址验证方法
+    try {
+      // 首先转换为小写进行基本验证
+      const lowerAddress = trimmedAddress.toLowerCase();
+      if (!Web3.utils.isAddress(lowerAddress)) {
+        toast.error('Please enter a valid Web3 wallet address');
+        return;
+      }
+      
+      // 然后尝试转换为正确的校验和地址
+      normalizedAddress = Web3.utils.toChecksumAddress(lowerAddress);
+      
+    } catch (error) {
       toast.error('Please enter a valid Web3 wallet address');
       return;
     }
@@ -43,17 +69,12 @@ export default function Home() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          to: trimmedAddress
+          to: normalizedAddress
         })
       });
 
-      console.log('response', response);
-
       if (response.ok) {
         const data = await response.json();
-        console.log('Transfer response:', data);
-        
-        // 检查API返回的具体错误
         if (data.error && data.error !== "200") {
           toast.error(`Transfer failed: ${data.err_msg || data.data || 'Server error'}`, { id: loadingToast });
         } else {
