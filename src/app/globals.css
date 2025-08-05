@@ -1,0 +1,145 @@
+/* 引入本地Hero字体 - 多个权重 */
+@font-face {
+  font-family: 'Hero';
+  src: url('/font/file.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hero';
+  src: url('/font/file (1).woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hero';
+  src: url('/font/file (2).woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 26, 26, 26; /* #1A1A1A */
+  --accent-green: 193, 255, 114; /* #C1FF72 */
+  --nav-bg: 217, 217, 217; /* #D9D9D9 */
+  --card-bg: 17, 17, 17; /* #111111 */
+  --input-bg: 34, 34, 34; /* #222222 */
+  --button-bg: 74, 90, 64; /* #4A5A40 */
+  --button-dark: 60, 74, 48; /* #3C4A30 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Hero', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: rgb(var(--card-bg));
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: rgb(var(--accent-green));
+  color: #000;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: rgba(var(--accent-green), 0.9);
+}
+
+.btn-secondary {
+  background-color: rgb(var(--button-bg));
+  color: #fff;
+  font-weight: 500;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(var(--button-bg), 0.9);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: rgb(var(--input-bg));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.input-group-text {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-control {
+  width: 100%;
+  background-color: rgb(var(--input-bg));
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 使整个文档隐藏滚动条但可滚动 */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body {
+  overflow-y: scroll;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
